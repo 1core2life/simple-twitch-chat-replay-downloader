@@ -1,10 +1,8 @@
 import requests 
 import json
 import sys
-reload(sys)
-sys.setdefaultencoding('utf-8')
 
-    
+
 def doubleDigit(num):
     if num < 10 :
         return '0'+str(num)
@@ -13,6 +11,12 @@ def doubleDigit(num):
 
 
 def main(v_id,c_id):
+    
+        
+    if sys.version_info[0] == 2:
+        reload(sys)
+        sys.setdefaultencoding('utf-8')
+    
     
     videoId = v_id
     clientId = c_id
@@ -68,7 +72,7 @@ def main(v_id,c_id):
         nextCursor = j["_next"]
             
     
-    f = open(videoId+".txt", 'wb')
+    f = open(videoId+".txt", 'wt')
     
     for x in range(0, len(time)): 
             f.write('[')
