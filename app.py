@@ -1,7 +1,7 @@
-import requests 
+# -*- coding:utf-8 -*-
+import requests
 import json
 import sys
-
 
 def doubleDigit(num):
     if num < 10 :
@@ -65,27 +65,25 @@ def main(v_id,c_id):
             time.append(doubleDigit(timeHour)+':'+doubleDigit(timeMinute)+':'+doubleDigit(timeSec))
             user.append(j["comments"][k]["commenter"]["display_name"])
             chat.append(j["comments"][k]["message"]["body"])
-       
+            
         if '_next' not in j:
             break
         
         nextCursor = j["_next"]
-            
     
-    f = open(videoId+".txt", 'wt')
+    f = open(videoId+".txt", 'wt', -1, "utf-8")
     
-    for x in range(0, len(time)): 
-            f.write('[')
+    for x in range(0, len(time)):
             f.write(str(time[x]))
-            f.write(']')
             f.write(' ')
-            f.write('<')
+            f.write('|')
+            f.write(' ')
             f.write(str(user[x]))
-            f.write('>')
+            f.write(' ')
+            f.write('|')
             f.write(' ')
             f.write(str(chat[x]))
             f.write("\n")
-            
     f.close()
     
     
