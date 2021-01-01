@@ -15,7 +15,7 @@ python app.py "video-id" "client-id"
 >
 >it can be optained from twitch url.
 >
->Ex) https://www.twitch.tv/videos/<video-id>
+>Ex) https://www.twitch.tv/videos/[Video-id]
 
 #### Client-id
 >This is unique id to get parsing data with twitch api server.
