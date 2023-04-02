@@ -7,7 +7,7 @@ It makes txt-file with chat written by twitch.tv replay.
 Python3
 
 # Usage
-python app.py "video-id" "client-id"
+python app.py {video-id} {client-id}
 
 
 #### Video-id
@@ -15,7 +15,7 @@ python app.py "video-id" "client-id"
 >
 >it can be optained from twitch url.
 >
->Ex) https://www.twitch.tv/videos/[Video-id]
+>Ex) https://www.twitch.tv/videos/{Video-id}
 
 #### Client-id
 >This is unique id to get parsing data with twitch api server.
