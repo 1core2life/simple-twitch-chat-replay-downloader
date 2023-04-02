@@ -4,7 +4,7 @@ Simple Twitch chat replay downloader
 It makes txt-file with chat written by twitch.tv replay.
 
 # Requirement
-Python 2/3
+Python3
 
 # Usage
 python app.py "video-id" "client-id"
