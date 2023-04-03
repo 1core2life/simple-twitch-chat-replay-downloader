@@ -3,35 +3,27 @@ import requests
 import json
 import sys
 
-def doubleDigit(num):
+def double_digit(num):
     if num < 10 :
         return '0'+str(num)
-    else:
-        return str(num)
+    return str(num)
 
 
 def main(v_id,c_id):
-    
-        
     if sys.version_info[0] == 2:
         reload(sys)
         sys.setdefaultencoding('utf-8')
     
-    
     videoId = v_id
     clientId = c_id
-    
-    
-
     chat = []
     time = []
     user = []
     
-    nextCursor = ''
+    next_cursor = ''
     
     params = {}
     params['client_id'] = clientId
-    
     
     i = 0
     
@@ -41,10 +33,8 @@ def main(v_id,c_id):
             i += 1
         else:
             URL = 'https://api.twitch.tv/v5/videos/'+videoId+'/comments?cursor=' 
-            URL +=  nextCursor   
+            URL +=  next_cursor   
             
-       
-        
         response = requests.get(URL, params=params)
         
         j = json.loads(response.text)
@@ -52,24 +42,24 @@ def main(v_id,c_id):
         for k in range(0,len(j["comments"])):
             timer = j["comments"][k]["content_offset_seconds"]
             
-            timeMinute = int(timer/60)
+            time_minutes = int(timer/60)
             
-            if timeMinute >= 60 :
-                timeHour = int(timeMinute/60)
-                timeMinute %= 60
+            if time_minutes >= 60 :
+                time_hour = int(time_minutes/60)
+                time_minutes %= 60
             else :
-                timeHour = int(timeMinute/60)
+                time_hour = int(time_minutes/60)
     
-            timeSec = int(timer%60)
+            time_sec = int(timer%60)
             
-            time.append(doubleDigit(timeHour)+':'+doubleDigit(timeMinute)+':'+doubleDigit(timeSec))
+            time.append(double_digit(time_hour)+':'+double_digit(time_minutes)+':'+double_digit(time_sec))
             user.append(j["comments"][k]["commenter"]["display_name"])
             chat.append(j["comments"][k]["message"]["body"])
             
         if '_next' not in j:
             break
         
-        nextCursor = j["_next"]
+        next_cursor = j["_next"]
     
     f = open(videoId+".txt", 'wt', -1, "utf-8")
     
